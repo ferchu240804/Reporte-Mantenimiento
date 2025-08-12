@@ -236,7 +236,7 @@ async function enviarReporte() {
         }
     });
 
-    const url = 'https://script.google.com/macros/s/AKfycbyd8uBYpknFei5ephFKLkCzCCHzxOsrQR2Ok00qdk0ySvCXSyKv6yX0E6YqFu5dcokw/exec'; // Poné la URL que te dio Apps Script acá
+    const url = 'http://127.0.0.1:5000/guardar_reporte'; // URL del backend Flask local
 
     try {
         const response = await fetch(url, {
@@ -247,10 +247,12 @@ async function enviarReporte() {
 
         const resJson = await response.json();
 
-        if (resJson.result === 'success') {
-            alert('Reporte guardado en Google Sheets 👍');
+        if (resJson.mensaje) {
+            alert('Reporte guardado en Excel 👍');
+        } else if (resJson.error) {
+            alert('Error: ' + resJson.error);
         } else {
-            alert('Error: ' + resJson.message);
+            alert('Error desconocido');
         }
     } catch (error) {
         alert('Error al enviar datos: ' + error.message);
