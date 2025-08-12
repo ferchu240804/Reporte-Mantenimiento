@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Reporte de Mantenimiento Realizado</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        background: #f0f0f0;
+        margin: 0;
+    }
+    .container {
+        max-width: 100%;
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #ccc;
+    }
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
+    }
+    th {
+        background-color: #e8e8e8;
+    }
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #27ae60;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #219150;
+    }
+    @media (max-width: 600px) {
+        table, th, td {
+            font-size: 14px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>🔧 Reporte de Mantenimiento</h2>
+<label>👤 Nombre:</label><input id="nombre" type="text"/>
+<label>🚗 Marca:</label><input id="marca" type="text"/>
+<label>📘 Modelo:</label><input id="modelo" type="text"/>
+<label>📆 Año:</label><input id="anio" type="text"/>
+<label>🔢 Chapa:</label><input id="chapa" type="text"/>
+<label>📍 Kilometraje:</label><input id="km" type="text"/>
+<label>📅 Fecha:</label><input id="fecha" type="date"/>
+<label>🧑‍🔧 Técnico:</label><input id="tecnico" type="text"/>
+<form id="mantenimientoForm">
+<table>
+<tr><th>🛠 Ítem</th><th>✅ ¿Realizado?</th></tr>
+<tr>
+<td>aceite de motor</td>
+<td>
+<input checked name="aceite_de_motor" type="radio" value="no"/> No
+<input name="aceite_de_motor" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>filtro de aceite</td>
+<td>
+<input checked name="filtro_de_aceite" type="radio" value="no"/> No
+<input name="filtro_de_aceite" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>filtro de aire</td>
+<td>
+<input checked name="filtro_de_aire" type="radio" value="no"/> No
+<input name="filtro_de_aire" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>filtro de combustible</td>
+<td>
+<input checked name="filtro_de_combustible" type="radio" value="no"/> No
+<input name="filtro_de_combustible" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>filtro de habitáculo</td>
+<td>
+<input checked name="filtro_de_habitáculo" type="radio" value="no"/> No
+<input name="filtro_de_habitáculo" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>aceite de caja</td>
+<td>
+<input checked name="aceite_de_caja" type="radio" value="no"/> No
+<input name="aceite_de_caja" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>aceite de diferencial trasero</td>
+<td>
+<input checked name="aceite_de_diferencial_trasero" type="radio" value="no"/> No
+<input name="aceite_de_diferencial_trasero" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>aceite de diferencial delantero</td>
+<td>
+<input checked name="aceite_de_diferencial_delantero" type="radio" value="no"/> No
+<input name="aceite_de_diferencial_delantero" type="radio" value="si"/> Sí
+</td>
+</tr>
+<tr>
+<td>caja reductora</td>
+<td>
+<input checked name="caja_reductora" type="radio" value="no"/> No
+<input name="caja_reductora" type="radio" value="si"/> Sí
+</td>
+</tr>
+</table>
+<h3>🔎 Inspección de Accesorios</h3>
+<table>
+<tr><th>Accesorio</th><th>¿Está en condiciones?</th></tr>
+<tr>
+<td>Luces</td>
+<td>
+<input checked name="luces" type="radio" value="no"/> ❌ No
+<input name="luces" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Extintor</td>
+<td>
+<input checked name="extintor" type="radio" value="no"/> ❌ No
+<input name="extintor" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Llave de ruedas</td>
+<td>
+<input checked name="llave_de_ruedas" type="radio" value="no"/> ❌ No
+<input name="llave_de_ruedas" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Refrigerante</td>
+<td>
+<input checked name="refrigerante" type="radio" value="no"/> ❌ No
+<input name="refrigerante" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Fluido de freno</td>
+<td>
+<input checked name="fluido_de_freno" type="radio" value="no"/> ❌ No
+<input name="fluido_de_freno" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Fluido de dirección</td>
+<td>
+<input checked name="fluido_de_direccion" type="radio" value="no"/> ❌ No
+<input name="fluido_de_direccion" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+<tr>
+<td>Líquido de frenos</td>
+<td>
+<input checked name="liquido_de_frenos" type="radio" value="no"/> ❌ No
+<input name="liquido_de_frenos" type="radio" value="si"/> ✅ Sí
+</td>
+</tr>
+</table>
+<button onclick="enviarReporte()" type="button">📤 Guardar Reporte en Excel</button>
+</form>
+</div>
+
+<script>
+async function enviarReporte() {
+    const data = {
+        nombre: document.getElementById('nombre').value,
+        marca: document.getElementById('marca').value,
+        modelo: document.getElementById('modelo').value,
+        anio: document.getElementById('anio').value,
+        chapa: document.getElementById('chapa').value,
+        km: document.getElementById('km').value,
+        fecha: document.getElementById('fecha').value,
+        tecnico: document.getElementById('tecnico').value,
+        tareas: {},
+        accesorios: {}
+    };
+
+    document.querySelectorAll('input[type=radio]').forEach(radio => {
+        if ([
+            'luces',
+            'extintor',
+            'llave_de_ruedas',
+            'refrigerante',
+            'fluido_de_freno',
+            'fluido_de_direccion',
+            'liquido_de_frenos'
+        ].includes(radio.name)) {
+            if (!data.accesorios[radio.name]) data.accesorios[radio.name] = null;
+            if (radio.checked) data.accesorios[radio.name] = radio.value;
+        } else {
+            if (!data.tareas[radio.name]) data.tareas[radio.name] = null;
+            if (radio.checked) data.tareas[radio.name] = radio.value;
+        }
+    });
+
+    const url = 'https://script.google.com/macros/s/AKfycbyd8uBYpknFei5ephFKLkCzCCHzxOsrQR2Ok00qdk0ySvCXSyKv6yX0E6YqFu5dcokw/exec'; // Poné la URL que te dio Apps Script acá
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const resJson = await response.json();
+
+        if (resJson.result === 'success') {
+            alert('Reporte guardado en Google Sheets 👍');
+        } else {
+            alert('Error: ' + resJson.message);
+        }
+    } catch (error) {
+        alert('Error al enviar datos: ' + error.message);
+    }
+}
+</script>
+
+</body>
+</html>
