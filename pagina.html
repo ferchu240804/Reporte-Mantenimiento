@@ -47,24 +47,32 @@
     th {
         background-color: #e8e8e8;
     }
-    button {
+    button, a.whatsapp-btn {
         margin-top: 20px;
         width: 100%;
         padding: 12px;
-        background-color: #27ae60;
-        color: white;
         font-size: 16px;
         border: none;
         border-radius: 8px;
         cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+    }
+    button {
+        background-color: #27ae60;
+        color: white;
     }
     button:hover {
         background-color: #219150;
     }
-    @media (max-width: 600px) {
-        table, th, td {
-            font-size: 14px;
-        }
+    a.whatsapp-btn {
+        background-color: #25D366;
+        color: white;
+        display: none;
+    }
+    a.whatsapp-btn:hover {
+        background-color: #1ebe5d;
     }
 </style>
 </head>
@@ -203,6 +211,7 @@
 </table>
 
 <button type="button" onclick="enviarReporte()">📤 Guardar Reporte en Excel</button>
+<a id="whatsappBtn" class="whatsapp-btn" target="_blank">📲 Enviar por WhatsApp</a>
 </form>
 </div>
 
@@ -221,18 +230,16 @@ async function enviarReporte() {
         accesorios: {}
     };
 
-    // Recorrer los radios y armar objetos tareas y accesorios
+    // Recorrer radios y llenar tareas/accesorios
     document.querySelectorAll('input[type=radio]').forEach(radio => {
         if (['luces','extintor','llave_de_ruedas','refrigerante','fluido_de_freno','fluido_de_direccion','liquido_de_frenos'].includes(radio.name)) {
-            if (!data.accesorios[radio.name]) data.accesorios[radio.name] = null;
             if (radio.checked) data.accesorios[radio.name] = radio.value;
         } else {
-            if (!data.tareas[radio.name]) data.tareas[radio.name] = null;
             if (radio.checked) data.tareas[radio.name] = radio.value;
         }
     });
 
-    const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte'; // Tu backend Railway
+    const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte';
 
     try {
         const response = await fetch(url, {
@@ -242,8 +249,6 @@ async function enviarReporte() {
         });
 
         const resJson = await response.json();
-        console.log(resJson);
-
         if (resJson.result === 'success') {
             alert('Reporte guardado en Excel 👍');
         } else {
@@ -253,8 +258,39 @@ async function enviarReporte() {
         console.error('Error al enviar datos:', error);
         alert('Error al enviar datos: ' + error.message);
     }
+
+    // ------ Generar mensaje para WhatsApp ------
+    let tareasTxt = "";
+    for (let t in data.tareas) {
+        tareasTxt += (data.tareas[t] === "si" ? "✅ " : "❌ ") + t.replaceAll("_"," ") + "\n";
+    }
+    let accesoriosTxt = "";
+    for (let a in data.accesorios) {
+        accesoriosTxt += (data.accesorios[a] === "si" ? "✅ " : "❌ ") + a.replaceAll("_"," ") + "\n";
+    }
+
+    const mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
+👤 Cliente: ${data.nombre}
+🚗 Marca: ${data.marca}
+📘 Modelo: ${data.modelo}
+📆 Año: ${data.anio}
+🔢 Chapa: ${data.chapa}
+📍 Kilometraje: ${data.km}
+📅 Fecha: ${data.fecha}
+🧑‍🔧 Técnico: ${data.tecnico}
+
+🛠 Tareas realizadas:
+${tareasTxt}
+
+🔎 Inspección de accesorios:
+${accesoriosTxt}`;
+
+    const numero = "595981919031"; // tu número en formato internacional
+    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = link;
+    btn.style.display = "block"; // mostrar botón
 }
 </script>
-
 </body>
 </html>
