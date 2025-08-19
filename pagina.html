@@ -80,6 +80,7 @@
 <label>📅 Fecha:</label><input id="fecha" type="date"/>
 <label>🧑‍🔧 Técnico:</label><input id="tecnico" type="text"/>
 <form id="mantenimientoForm">
+<!-- Tabla de tareas -->
 <table>
 <tr><th>🛠 Ítem</th><th>✅ ¿Realizado?</th></tr>
 <tr>
@@ -146,6 +147,7 @@
 </td>
 </tr>
 </table>
+
 <h3>🔎 Inspección de Accesorios</h3>
 <table>
 <tr><th>Accesorio</th><th>¿Está en condiciones?</th></tr>
@@ -199,7 +201,8 @@
 </td>
 </tr>
 </table>
-<button onclick="enviarReporte()" type="button">📤 Guardar Reporte en Excel</button>
+
+<button type="button" onclick="enviarReporte()">📤 Guardar Reporte en Excel</button>
 </form>
 </div>
 
@@ -218,16 +221,9 @@ async function enviarReporte() {
         accesorios: {}
     };
 
+    // Recorrer los radios y armar objetos tareas y accesorios
     document.querySelectorAll('input[type=radio]').forEach(radio => {
-        if ([
-            'luces',
-            'extintor',
-            'llave_de_ruedas',
-            'refrigerante',
-            'fluido_de_freno',
-            'fluido_de_direccion',
-            'liquido_de_frenos'
-        ].includes(radio.name)) {
+        if (['luces','extintor','llave_de_ruedas','refrigerante','fluido_de_freno','fluido_de_direccion','liquido_de_frenos'].includes(radio.name)) {
             if (!data.accesorios[radio.name]) data.accesorios[radio.name] = null;
             if (radio.checked) data.accesorios[radio.name] = radio.value;
         } else {
@@ -236,7 +232,7 @@ async function enviarReporte() {
         }
     });
 
-    const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte'; // URL del backend Flask local
+    const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte'; // Tu backend Railway
 
     try {
         const response = await fetch(url, {
@@ -246,15 +242,15 @@ async function enviarReporte() {
         });
 
         const resJson = await response.json();
+        console.log(resJson);
 
-        if (resJson.mensaje) {
+        if (resJson.result === 'success') {
             alert('Reporte guardado en Excel 👍');
-        } else if (resJson.error) {
-            alert('Error: ' + resJson.error);
         } else {
-            alert('Error desconocido');
+            alert('Error: ' + resJson.message);
         }
     } catch (error) {
+        console.error('Error al enviar datos:', error);
         alert('Error al enviar datos: ' + error.message);
     }
 }
