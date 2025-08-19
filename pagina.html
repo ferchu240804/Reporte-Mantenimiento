@@ -236,7 +236,7 @@ async function enviarReporte() {
         }
     });
 
-    const url = 'web-production-3fcc.up.railway.app'; // URL del backend Flask local
+    const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte'; // URL del backend Flask local
 
     try {
         const response = await fetch(url, {
