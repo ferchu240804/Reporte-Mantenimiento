@@ -260,33 +260,41 @@ async function enviarReporte() {
     }
 
     // ------ Generar mensaje para WhatsApp ------
-    // Solo tareas realizadas ✅
+    
+// Solo tareas realizadas ✅
 let tareasRealizadas = Object.entries(data.tareas)
     .filter(([key, value]) => value === 'si')
     .map(([key]) => `✅ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`)
     .join('\n');
 
 // Todos los accesorios, con ✅ o ❌ según valor
-    let accesoriosTexto = Object.entries(data.accesorios)
-        .map(([key, value]) => {
-            let simbolo = value === 'si' ? '✅' : '❌';
-            return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`;
-        })
-        .join('\n');
+let accesoriosTexto = Object.entries(data.accesorios)
+    .map(([key, value]) => {
+        let simbolo = value === 'si' ? '✅' : '❌';
+        return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`;
+    })
+    .join('\n');
 
-        let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
-            👤 Cliente: ${data.nombre}
-            🚗 Marca: ${data.marca}
-            📘 Modelo: ${data.modelo}
-            📍 Kilometraje: ${data.km}
-            📅 Fecha: ${data.fecha}
-            🧑‍🔧 Técnico: ${data.tecnico}
-    
-            🛠 Tareas realizadas:
-        ${tareasRealizadas}
+let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
+👤 Cliente: ${data.nombre}
+🚗 Marca: ${data.marca}
+📘 Modelo: ${data.modelo}
+📍 Kilometraje: ${data.km}
+📅 Fecha: ${data.fecha}
+🧑‍🔧 Técnico: ${data.tecnico}
 
-        🔎 Accesorios:
-    ${accesoriosTexto}`;
+🛠 Tareas realizadas:
+${tareasRealizadas}
+
+🔎 Accesorios:
+${accesoriosTexto}`;
+
+
+    const numero = "595981919031"; // tu número en formato internacional
+    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = link;
+    btn.style.display = "block"; // mostrar botón
 }
 </script>
 </body>
