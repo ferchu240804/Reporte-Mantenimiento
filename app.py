@@ -2,16 +2,18 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+import os
+import json
 
 app = Flask(__name__)
 CORS(app)  # Permite CORS desde cualquier origen para pruebas
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SERVICE_ACCOUNT_FILE = 'proyecto-mantenimientooo.json'  # tu archivo JSON descargado
 SPREADSHEET_ID = '1EyaRCaJdyDXgKxcJ34fBydxcAbBNhmMxXbZxZ4UQg84'  # ID de tu Google Sheet
 
-# Inicializar credenciales y servicio
-creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+# Leer credenciales desde variable de entorno
+service_account_info = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+creds = Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
 service = build('sheets', 'v4', credentials=creds)
 sheet = service.spreadsheets()
 
@@ -19,8 +21,8 @@ sheet = service.spreadsheets()
 def guardar_reporte():
     datos = request.json
     try:
-        tareas_realizadas = [k.replace("_", " ").capitalize() for k,v in datos['tareas'].items() if v == 'si']
-        accesorios_malos = [k.replace("_", " ").capitalize() for k,v in datos['accesorios'].items() if v == 'no']
+        tareas_realizadas = [k.replace("_", " ").capitalize() for k, v in datos['tareas'].items() if v == 'si']
+        accesorios_malos = [k.replace("_", " ").capitalize() for k, v in datos['accesorios'].items() if v == 'no']
 
         fila = [
             datos.get('nombre', ''),
@@ -48,4 +50,4 @@ def guardar_reporte():
         return jsonify({'result': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
