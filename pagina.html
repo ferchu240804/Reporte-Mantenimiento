@@ -260,36 +260,33 @@ async function enviarReporte() {
     }
 
     // ------ Generar mensaje para WhatsApp ------
-    let tareasTxt = "";
-    for (let t in data.tareas) {
-        tareasTxt += (data.tareas[t] === "si" ? "✅ " : "❌ ") + t.replaceAll("_"," ") + "\n";
-    }
-    let accesoriosTxt = "";
-    for (let a in data.accesorios) {
-        accesoriosTxt += (data.accesorios[a] === "si" ? "✅ " : "❌ ") + a.replaceAll("_"," ") + "\n";
-    }
+    // Solo tareas realizadas ✅
+let tareasRealizadas = Object.entries(data.tareas)
+    .filter(([key, value]) => value === 'si')
+    .map(([key]) => `✅ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`)
+    .join('\n');
 
-    const mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
-👤 Cliente: ${data.nombre}
-🚗 Marca: ${data.marca}
-📘 Modelo: ${data.modelo}
-📆 Año: ${data.anio}
-🔢 Chapa: ${data.chapa}
-📍 Kilometraje: ${data.km}
-📅 Fecha: ${data.fecha}
-🧑‍🔧 Técnico: ${data.tecnico}
+// Todos los accesorios, con ✅ o ❌ según valor
+    let accesoriosTexto = Object.entries(data.accesorios)
+        .map(([key, value]) => {
+            let simbolo = value === 'si' ? '✅' : '❌';
+            return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`;
+        })
+        .join('\n');
 
-🛠 Tareas realizadas:
-${tareasTxt}
+        let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
+            👤 Cliente: ${data.nombre}
+            🚗 Marca: ${data.marca}
+            📘 Modelo: ${data.modelo}
+            📍 Kilometraje: ${data.km}
+            📅 Fecha: ${data.fecha}
+            🧑‍🔧 Técnico: ${data.tecnico}
+    
+            🛠 Tareas realizadas:
+        ${tareasRealizadas}
 
-🔎 Inspección de accesorios:
-${accesoriosTxt}`;
-
-    const numero = "595981919031"; // tu número en formato internacional
-    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    const btn = document.getElementById("whatsappBtn");
-    btn.href = link;
-    btn.style.display = "block"; // mostrar botón
+        🔎 Accesorios:
+    ${accesoriosTexto}`;
 }
 </script>
 </body>
