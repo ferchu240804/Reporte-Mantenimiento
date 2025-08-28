@@ -184,8 +184,13 @@ async function enviarReporte() {
         .join('\n');
 
     let accesoriosTexto = Object.entries(data.accesorios)
-        .map(([key, value]) => { let simbolo = value === 'si' ? '\u2705' : '\u274C'; return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`; })
-        .join('\n');
+    .filter(([key, value]) => value === 'no') // solo lo que está mal ❌
+    .map(([key]) => `❌ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`);
+
+    // Agregar los extras manuales de condiciones (si hay)
+    if (condicionesExtras.length > 0) {
+    accesoriosTexto += "\n" + condicionesExtras.map(c => `✅ ${c}`).join("\n");
+    }
 
     let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
 👤 Cliente: ${data.nombre}
