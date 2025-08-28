@@ -183,14 +183,20 @@ async function enviarReporte() {
         .map(([key]) => `\u2705 ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`)
         .join('\n');
 
+    // Solo los accesorios que están mal
     let accesoriosTexto = Object.entries(data.accesorios)
-    .filter(([key, value]) => value === 'no') // solo lo que está mal ❌
-    .map(([key]) => `❌ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`);
+        .filter(([key, value]) => value === 'no')
+        .map(([key]) => `❌ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`);
 
-    // Agregar los extras manuales de condiciones (si hay)
+    // Agregar los extras de condiciones al final, si hay
     if (condicionesExtras.length > 0) {
-    accesoriosTexto += "\n" + condicionesExtras.map(c => `✅ ${c}`).join("\n");
+        accesoriosTexto = accesoriosTexto.concat(
+            condicionesExtras.map(c => `✅ ${c}`)
+        );
     }
+
+    // Unir en string con salto de línea
+    accesoriosTexto = accesoriosTexto.join('\n');
 
     let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
 👤 Cliente: ${data.nombre}
