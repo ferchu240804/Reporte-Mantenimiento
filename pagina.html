@@ -18,16 +18,8 @@
         border-radius: 10px;
         box-shadow: 0px 0px 10px #ccc;
     }
-    h2 {
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
+    h2 { text-align: center; color: #2c3e50; margin-bottom: 20px; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
     input[type="text"], input[type="date"] {
         width: 100%;
         padding: 8px;
@@ -35,45 +27,19 @@
         border-radius: 5px;
         border: 1px solid #ccc;
     }
-    table {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px;
-        border-bottom: 1px solid #ccc;
-    }
-    th {
-        background-color: #e8e8e8;
-    }
+    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+    th, td { padding: 8px; border-bottom: 1px solid #ccc; }
+    th { background-color: #e8e8e8; }
     button, a.whatsapp-btn {
-        margin-top: 20px;
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        display: inline-block;
-        text-align: center;
+        margin-top: 20px; width: 100%; padding: 12px;
+        font-size: 16px; border: none; border-radius: 8px;
+        cursor: pointer; display: inline-block; text-align: center;
         text-decoration: none;
     }
-    button {
-        background-color: #27ae60;
-        color: white;
-    }
-    button:hover {
-        background-color: #219150;
-    }
-    a.whatsapp-btn {
-        background-color: #25D366;
-        color: white;
-        display: none;
-    }
-    a.whatsapp-btn:hover {
-        background-color: #1ebe5d;
-    }
+    button { background-color: #27ae60; color: white; }
+    button:hover { background-color: #219150; }
+    a.whatsapp-btn { background-color: #25D366; color: white; display: none; }
+    a.whatsapp-btn:hover { background-color: #1ebe5d; }
 </style>
 </head>
 <body>
@@ -88,127 +54,38 @@
 <label>📅 Fecha:</label><input id="fecha" type="date"/>
 <label>🧑‍🔧 Técnico:</label><input id="tecnico" type="text"/>
 <form id="mantenimientoForm">
-<!-- Tabla de tareas -->
 <table>
 <tr><th>🛠 Ítem</th><th>✅ ¿Realizado?</th></tr>
-<tr>
-<td>aceite de motor</td>
-<td>
-<input checked name="aceite_de_motor" type="radio" value="no"/> No
-<input name="aceite_de_motor" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>filtro de aceite</td>
-<td>
-<input checked name="filtro_de_aceite" type="radio" value="no"/> No
-<input name="filtro_de_aceite" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>filtro de aire</td>
-<td>
-<input checked name="filtro_de_aire" type="radio" value="no"/> No
-<input name="filtro_de_aire" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>filtro de combustible</td>
-<td>
-<input checked name="filtro_de_combustible" type="radio" value="no"/> No
-<input name="filtro_de_combustible" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>filtro de habitáculo</td>
-<td>
-<input checked name="filtro_de_habitáculo" type="radio" value="no"/> No
-<input name="filtro_de_habitáculo" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>aceite de caja</td>
-<td>
-<input checked name="aceite_de_caja" type="radio" value="no"/> No
-<input name="aceite_de_caja" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>aceite de diferencial trasero</td>
-<td>
-<input checked name="aceite_de_diferencial_trasero" type="radio" value="no"/> No
-<input name="aceite_de_diferencial_trasero" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>aceite de diferencial delantero</td>
-<td>
-<input checked name="aceite_de_diferencial_delantero" type="radio" value="no"/> No
-<input name="aceite_de_diferencial_delantero" type="radio" value="si"/> Sí
-</td>
-</tr>
-<tr>
-<td>caja reductora</td>
-<td>
-<input checked name="caja_reductora" type="radio" value="no"/> No
-<input name="caja_reductora" type="radio" value="si"/> Sí
-</td>
-</tr>
+<tr><td>aceite de motor</td><td><input checked name="aceite_de_motor" type="radio" value="no"/> No <input name="aceite_de_motor" type="radio" value="si"/> Sí</td></tr>
+<tr><td>filtro de aceite</td><td><input checked name="filtro_de_aceite" type="radio" value="no"/> No <input name="filtro_de_aceite" type="radio" value="si"/> Sí</td></tr>
+<tr><td>filtro de aire</td><td><input checked name="filtro_de_aire" type="radio" value="no"/> No <input name="filtro_de_aire" type="radio" value="si"/> Sí</td></tr>
+<tr><td>filtro de combustible</td><td><input checked name="filtro_de_combustible" type="radio" value="no"/> No <input name="filtro_de_combustible" type="radio" value="si"/> Sí</td></tr>
+<tr><td>filtro de habitáculo</td><td><input checked name="filtro_de_habitáculo" type="radio" value="no"/> No <input name="filtro_de_habitáculo" type="radio" value="si"/> Sí</td></tr>
+<tr><td>aceite de caja</td><td><input checked name="aceite_de_caja" type="radio" value="no"/> No <input name="aceite_de_caja" type="radio" value="si"/> Sí</td></tr>
+<tr><td>aceite de diferencial trasero</td><td><input checked name="aceite_de_diferencial_trasero" type="radio" value="no"/> No <input name="aceite_de_diferencial_trasero" type="radio" value="si"/> Sí</td></tr>
+<tr><td>aceite de diferencial delantero</td><td><input checked name="aceite_de_diferencial_delantero" type="radio" value="no"/> No <input name="aceite_de_diferencial_delantero" type="radio" value="si"/> Sí</td></tr>
+<tr><td>caja reductora</td><td><input checked name="caja_reductora" type="radio" value="no"/> No <input name="caja_reductora" type="radio" value="si"/> Sí</td></tr>
 </table>
+
+<h4>Añadir servicios extra</h4>
+<input type="text" id="inputTareaExtra" placeholder="Escribe un servicio extra y presiona Enter"/>
+<ul id="listaTareasExtras"></ul>
 
 <h3>🔎 Inspección de Accesorios</h3>
 <table>
 <tr><th>Accesorio</th><th>¿Está en condiciones?</th></tr>
-<tr>
-<td>Luces</td>
-<td>
-<input checked name="luces" type="radio" value="no"/> ❌ No
-<input name="luces" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Extintor</td>
-<td>
-<input checked name="extintor" type="radio" value="no"/> ❌ No
-<input name="extintor" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Llave de ruedas</td>
-<td>
-<input checked name="llave_de_ruedas" type="radio" value="no"/> ❌ No
-<input name="llave_de_ruedas" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Refrigerante</td>
-<td>
-<input checked name="refrigerante" type="radio" value="no"/> ❌ No
-<input name="refrigerante" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Fluido de freno</td>
-<td>
-<input checked name="fluido_de_freno" type="radio" value="no"/> ❌ No
-<input name="fluido_de_freno" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Fluido de dirección</td>
-<td>
-<input checked name="fluido_de_direccion" type="radio" value="no"/> ❌ No
-<input name="fluido_de_direccion" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
-<tr>
-<td>Líquido de frenos</td>
-<td>
-<input checked name="liquido_de_frenos" type="radio" value="no"/> ❌ No
-<input name="liquido_de_frenos" type="radio" value="si"/> ✅ Sí
-</td>
-</tr>
+<tr><td>Luces</td><td><input checked name="luces" type="radio" value="no"/> ❌ No <input name="luces" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Extintor</td><td><input checked name="extintor" type="radio" value="no"/> ❌ No <input name="extintor" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Llave de ruedas</td><td><input checked name="llave_de_ruedas" type="radio" value="no"/> ❌ No <input name="llave_de_ruedas" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Refrigerante</td><td><input checked name="refrigerante" type="radio" value="no"/> ❌ No <input name="refrigerante" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Fluido de freno</td><td><input checked name="fluido_de_freno" type="radio" value="no"/> ❌ No <input name="fluido_de_freno" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Fluido de dirección</td><td><input checked name="fluido_de_direccion" type="radio" value="no"/> ❌ No <input name="fluido_de_direccion" type="radio" value="si"/> ✅ Sí</td></tr>
+<tr><td>Líquido de frenos</td><td><input checked name="liquido_de_frenos" type="radio" value="no"/> ❌ No <input name="liquido_de_frenos" type="radio" value="si"/> ✅ Sí</td></tr>
 </table>
+
+<h4>Añadir condiciones extra</h4>
+<input type="text" id="inputCondicionExtra" placeholder="Escribe una condición extra y presiona Enter"/>
+<ul id="listaCondicionesExtras"></ul>
 
 <button type="button" onclick="enviarReporte()">📤 Guardar Reporte en Excel</button>
 <a id="whatsappBtn" class="whatsapp-btn" target="_blank">📲 Enviar por WhatsApp</a>
@@ -216,6 +93,47 @@
 </div>
 
 <script>
+let tareasExtras = [];
+let condicionesExtras = [];
+
+// Enter para agregar extras dinámicamente
+document.getElementById("inputTareaExtra").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    agregarTareaExtra();
+  }
+});
+document.getElementById("inputCondicionExtra").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    agregarCondicionExtra();
+  }
+});
+
+function agregarTareaExtra() {
+  const input = document.getElementById("inputTareaExtra");
+  const valor = input.value.trim();
+  if (valor !== "") {
+    tareasExtras.push(valor);
+    const li = document.createElement("li");
+    li.textContent = valor;
+    document.getElementById("listaTareasExtras").appendChild(li);
+    input.value = "";
+  }
+}
+
+function agregarCondicionExtra() {
+  const input = document.getElementById("inputCondicionExtra");
+  const valor = input.value.trim();
+  if (valor !== "") {
+    condicionesExtras.push(valor);
+    const li = document.createElement("li");
+    li.textContent = valor;
+    document.getElementById("listaCondicionesExtras").appendChild(li);
+    input.value = "";
+  }
+}
+
 async function enviarReporte() {
     const data = {
         nombre: document.getElementById('nombre').value,
@@ -230,7 +148,7 @@ async function enviarReporte() {
         accesorios: {}
     };
 
-    // Recorrer radios y llenar tareas/accesorios
+    // Recorrer radios
     document.querySelectorAll('input[type=radio]').forEach(radio => {
         if (['luces','extintor','llave_de_ruedas','refrigerante','fluido_de_freno','fluido_de_direccion','liquido_de_frenos'].includes(radio.name)) {
             if (radio.checked) data.accesorios[radio.name] = radio.value;
@@ -238,6 +156,12 @@ async function enviarReporte() {
             if (radio.checked) data.tareas[radio.name] = radio.value;
         }
     });
+
+    // ⚡ Agregar los extras de tareas y condiciones al objeto antes de enviar
+    tareasExtras.forEach(t => data.tareas[t] = 'si');
+    condicionesExtras.forEach(c => data.accesorios[c] = 'si');
+
+    console.log("Enviando data:", data); // 🔎 Verificar en consola que los extras están incluidos
 
     const url = 'https://web-production-3fcc.up.railway.app/guardar_reporte';
 
@@ -249,33 +173,21 @@ async function enviarReporte() {
         });
 
         const resJson = await response.json();
-        if (resJson.result === 'success') {
-            alert('Reporte guardado en Excel 👍');
-        } else {
-            alert('Error: ' + resJson.message);
-        }
-    } catch (error) {
-        console.error('Error al enviar datos:', error);
-        alert('Error al enviar datos: ' + error.message);
-    }
+        if (resJson.result === 'success') { alert('Reporte guardado en Excel 👍'); }
+        else { alert('Error: ' + resJson.message); }
+    } catch (error) { alert('Error al enviar datos: ' + error.message); }
 
-    // ------ Generar mensaje para WhatsApp ------
-    
-// Solo tareas realizadas ✅
-let tareasRealizadas = Object.entries(data.tareas)
-    .filter(([key, value]) => value === 'si')
-    .map(([key]) => `✅ ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`)
-    .join('\n');
+    // WhatsApp
+    let tareasRealizadas = Object.entries(data.tareas)
+        .filter(([key, value]) => value === 'si')
+        .map(([key]) => `\u2705 ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`)
+        .join('\n');
 
-// Todos los accesorios, con ✅ o ❌ según valor
-let accesoriosTexto = Object.entries(data.accesorios)
-    .map(([key, value]) => {
-        let simbolo = value === 'si' ? '✅' : '❌';
-        return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`;
-    })
-    .join('\n');
+    let accesoriosTexto = Object.entries(data.accesorios)
+        .map(([key, value]) => { let simbolo = value === 'si' ? '\u2705' : '\u274C'; return `${simbolo} ${key.replace(/_/g," ").replace(/\b\w/g, l => l.toUpperCase())}`; })
+        .join('\n');
 
-let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
+    let mensaje = `🔧 REPORTE DE MANTENIMIENTO REALIZADO 🔧
 👤 Cliente: ${data.nombre}
 🚗 Marca: ${data.marca}
 📘 Modelo: ${data.modelo}
@@ -289,12 +201,11 @@ ${tareasRealizadas}
 🔎 Accesorios:
 ${accesoriosTexto}`;
 
-
-    const numero = "595985414907"; // tu número en formato internacional
+    const numero = "598981919031";
     const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     const btn = document.getElementById("whatsappBtn");
     btn.href = link;
-    btn.style.display = "block"; // mostrar botón
+    btn.style.display = "block";
 }
 </script>
 </body>

@@ -26,8 +26,10 @@ sheet = service.spreadsheets()
 def guardar_reporte():
     datos = request.json
     try:
+        # Tareas realizadas (incluye los extras)
         tareas_realizadas = [k.replace("_", " ").capitalize() for k,v in datos['tareas'].items() if v == 'si']
-        accesorios_malos = [k.replace("_", " ").capitalize() for k,v in datos['accesorios'].items() if v == 'no']
+        # Accesorios y condiciones en buen estado (incluye los extras)
+        accesorios_condiciones = [k.replace("_", " ").capitalize() for k,v in datos['accesorios'].items() if v == 'si']
 
         fila = [
             datos.get('nombre', ''),
@@ -38,8 +40,8 @@ def guardar_reporte():
             datos.get('km', ''),
             datos.get('fecha', ''),
             datos.get('tecnico', ''),
-            ", ".join(tareas_realizadas),
-            ", ".join(accesorios_malos)
+            ", ".join(tareas_realizadas),          # columna de tareas realizadas
+            ", ".join(accesorios_condiciones)      # columna de accesorios/condiciones
         ]
 
         result = sheet.values().append(
